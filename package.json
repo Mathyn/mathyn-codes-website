@@ -4,7 +4,12 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "start:docker": "docker run -p 4000:4000 mathyn-codes-website",
+        "start:docker": "docker run -p 4000:4000 mathyn-codes-website:latest",
+        "minikube:load": "minikube image load mathyn-codes-website:latest",
+        "minikube:expose": "minikube service mathyn-codes-website --url",
+        "helm:install": "@powershell -Command ./k8s/install.ps1 dryRun=false",
+        "helm:uninstall": "@powershell -Command ./k8s/uninstall.ps1",
+        "helm:upgrade": "@powershell -Command ./k8s/upgrade.ps1",
         "build": "ng build",
         "build:docker": "docker build -t mathyn-codes-website .",
         "watch": "ng build --watch --configuration development",
