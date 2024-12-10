@@ -1,0 +1,1 @@
+helm upgrade -n mathyn-codes-website mathyn-codes-website ./k8s/mathyn-codes-website

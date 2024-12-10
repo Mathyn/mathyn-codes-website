@@ -1,0 +1,1 @@
+helm uninstall -n mathyn-codes-website mathyn-codes-website
