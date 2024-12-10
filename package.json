@@ -4,7 +4,9 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
+        "start:docker": "docker run -p 4000:4000 mathyn-codes-website",
         "build": "ng build",
+        "build:docker": "docker build -t mathyn-codes-website .",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "serve:ssr:mathyn-codes-website": "node dist/mathyn-codes-website/server/server.mjs"
