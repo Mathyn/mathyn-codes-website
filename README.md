@@ -2,12 +2,12 @@
 
 This repo contains the source code for the website for Mathyn Codes (https://mathyn.codes).
 
-This websites serves as a way to promote myself and my work. This website in itself is a promotion of my work 😀!
+This website serves as a way to promote myself and my work. This website in itself is a promotion of my work 😀!
 
 ## Dependencies
 
 To build this website locally please ensure you have the following dependencies installed:
-- Node @ v22 and NPM @v10
+- Node @v22 and NPM @v10
     - Strongly consider using a tool like [NVM for Windows](https://github.com/coreybutler/nvm-windows) to install Node and NPM.
 - [Kubectl](https://kubernetes.io/docs/reference/kubectl/) @ v1.31.3
     - Used to interface with a Kubernetes cluster, either locally or remote.
@@ -15,6 +15,8 @@ To build this website locally please ensure you have the following dependencies 
     - Used to run a local Kubernetes machine on your machine.
 - [Helm](https://helm.sh/) @ v3.16
     - Used to generate Kubernetes charts from templates.
+
+The scripts and tooling have been written for and tested on a Windows 11 machine.
 
 ## Development server
 
@@ -72,7 +74,7 @@ First copy the `.env.template` file and rename this to `.env`. Fill in the empty
 
 ### Build the docker image
 
-Without a Docker image there's nothing to run in a k8s cluster. Simple do `npm run docker:build` to build the image.
+Without a Docker image there's nothing to run in a k8s cluster. Run `npm run docker:build` to build the image.
 
 ### Deploy locally using Minikube
 
