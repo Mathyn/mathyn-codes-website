@@ -1,11 +1,11 @@
-param($dryRun = "true", $local = "true", $namespace = $Env:DEFAULT_NAMESPACE)
+param($dryRun = "true", $local = "true", $namespace = $Env:DEFAULT_NAMESPACE, $tag = $Env:VERSION)
 
 $protocol = "https"
 if ($local -eq "true") {
     $protocol = "http"
 }
 
-$helmArguments = "--set protocol=$protocol"
+$helmArguments = "--set protocol=$protocol --set image.tag=${tag}"
 
 if ($dryRun -eq "true") {
     # Append

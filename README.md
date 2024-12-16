@@ -56,27 +56,37 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 ## Running in a Kubernetes cluster
 
-This project is meant to be deployed in a Kubernetes (from now on shortened as k8s) cluster. This chapter will discuss how to deploy to both a local and remote cluster.
+This project is meant to be deployed in a Kubernetes (k8s) cluster. This chapter will discuss how to deploy to both a local and remote cluster.
 
-### Some helpful kubectl commands
+### Set up your `.env` file
+
+First copy the `.env.template` file and rename this to `.env`. Fill in the empty values with values which make sense for your project.
+
+### Ensure you are using the Minikube k8s context!
 
 - `kubectl config get-contexts`
     - Shows which contexts are available and which context you are currently using.
 - `kubectl config use-context CONTEXT_NAME`
-    - Set the selectec context.
+    - Set the selected context.
+    - For Minikube: `kubectl config use-context minikube`
+
+### Build the docker image
+
+Without a Docker image there's nothing to run in a k8s cluster. Simple do `npm run docker:build` to build the image.
 
 ### Deploy locally using Minikube
 
 > ⚠️ Don't forget to start Minikube using `minikube start` ⚠️
 
-> ⚠️ Ensure you've created the proper k8s namespace using `kubectl create namespace mathyn-codes-website` ⚠️
+> ⚠️ Ensure you've created the proper k8s namespace using `kubectl create namespace YOUR_NAMESPACE` ⚠️
 
 > Tip: run `minikube dashboard` in a terminal to get access to a very helpful k8s dashboard 😎
 
 Do the following steps:
 - `npm run minikube:load`
-    - This will load the last build docker image into Minikube (with tag `latest`)
+    - This will load the last build docker image into Minikube (with the tag defined in your `.env` file.)
 - `npm run helm:upgrade:local` (or `npm run helm:install:local` if this is the first time running).
     - This will upgrade the deployment (or install if if running the second command).
+    - The `:local` part will make sure the parts related to the HTTPS connection are skipped.
 - `npm run minikube:expose`
     - This will expose the website to your local system. An URL will be outputted which you can use to access the service.
