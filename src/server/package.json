@@ -1,0 +1,8 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Used for hosting the website",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
