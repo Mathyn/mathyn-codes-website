@@ -1,11 +1,18 @@
-param($dryRun = "true")
+param($dryRun = "true", $local = "true", $namespace = $Env:DEFAULT_NAMESPACE)
 
-$helmArguments = ""
-if ($dryRun -eq "true") {
-    $helmArguments = "--debug --dry-run"
+$protocol = "https"
+if ($local -eq "true") {
+    $protocol = "http"
 }
 
-$cmd = "helm install $helmArguments -n default mathyn-codes-website ./k8s/mathyn-codes-website"
+$helmArguments = "--set protocol=$protocol"
+
+if ($dryRun -eq "true") {
+    # Append
+    $helmArguments = "$helmArguments --debug --dry-run"
+}
+
+$cmd = "helm install -n $namespace mathyn-codes-website ./k8s/mathyn-codes-website $helmArguments"
 
 Write-Host "Executing: $cmd"
 

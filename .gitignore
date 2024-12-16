@@ -43,3 +43,6 @@ Thumbs.db
 
 # Helm
 k8s/**/values.yaml
+
+# Environment variables
+.env

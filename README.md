@@ -67,12 +67,16 @@ This project is meant to be deployed in a Kubernetes (from now on shortened as k
 
 ### Deploy locally using Minikube
 
+> ⚠️ Don't forget to start Minikube using `minikube start` ⚠️
+
+> ⚠️ Ensure you've created the proper k8s namespace using `kubectl create namespace mathyn-codes-website` ⚠️
+
 > Tip: run `minikube dashboard` in a terminal to get access to a very helpful k8s dashboard 😎
 
 Do the following steps:
 - `npm run minikube:load`
     - This will load the last build docker image into Minikube (with tag `latest`)
-- `npm run helm:upgrade` (or `npm run helm:install` if this is the first time running).
+- `npm run helm:upgrade:local` (or `npm run helm:install:local` if this is the first time running).
     - This will upgrade the deployment (or install if if running the second command).
 - `npm run minikube:expose`
     - This will expose the website to your local system. An URL will be outputted which you can use to access the service.

@@ -3,18 +3,22 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve",
-        "start:docker": "docker run -p 4000:4000 mathyn-codes-website:latest",
-        "minikube:load": "minikube image load mathyn-codes-website:latest",
-        "minikube:expose": "minikube service mathyn-codes-website --url",
-        "helm:install": "@powershell -Command ./k8s/install.ps1 dryRun=false",
-        "helm:uninstall": "@powershell -Command ./k8s/uninstall.ps1",
-        "helm:upgrade": "@powershell -Command ./k8s/upgrade.ps1",
         "build": "ng build",
-        "build:docker": "docker build -t mathyn-codes-website .",
-        "watch": "ng build --watch --configuration development",
+        "start": "ng serve",
+        "start:ssr": "node dist/mathyn-codes-website/server/server.mjs",
         "test": "ng test",
-        "serve:ssr:mathyn-codes-website": "node dist/mathyn-codes-website/server/server.mjs"
+
+        "minikube:load": "dotenvx run -- @powershell -Command ./minikube/load-image-into-cache.ps1",
+        "minikube:expose": "dotenvx run -- @powershell -Command ./minikube/expose-service.ps1",
+
+        "helm:install:local": "dotenvx run -- @powershell -Command ./k8s/install.ps1 --dryRun=false",
+        "helm:upgrade:local": "dotenvx run -- @powershell -Command ./k8s/upgrade.ps1 --dryRun=false",
+        "helm:install:prod": "dotenvx run -- @powershell -Command ./k8s/install.ps1 --dryRun=false --local=false",
+        "helm:upgrade:prod": "dotenvx run -- @powershell -Command ./k8s/upgrade.ps1 --dryRun=false --local=false",
+        "helm:uninstall": "dotenvx run -- @powershell -Command ./k8s/uninstall.ps1",
+
+        "docker:build": "dotenvx run -- @powershell -Command ./docker/build-image.ps1",
+        "docker:push": "dotenvx run -- @powershell -Command ./docker/push-image.ps1"
     },
     "private": true,
     "dependencies": {
@@ -37,6 +41,7 @@
         "@angular-devkit/build-angular": "^19.0.4",
         "@angular/cli": "^19.0.4",
         "@angular/compiler-cli": "^19.0.0",
+        "@dotenvx/dotenvx": "^1.31.0",
         "@types/express": "^4.17.17",
         "@types/jasmine": "~5.1.0",
         "@types/node": "^18.18.0",

@@ -1,6 +1,6 @@
 param($namespace = $Env:DEFAULT_NAMESPACE)
 
-$cmd = "helm uninstall -n $namespace mathyn-codes-website"
+$cmd = "minikube service -n $namespace mathyn-codes-website-service --url"
 
 Write-Host "Executing: $cmd"
 
