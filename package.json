@@ -8,7 +8,6 @@
     "build:copy-server": "cp src/server/proxy-server.mjs dist/mathyn-codes-website/server/ && cp src/server/package* dist/mathyn-codes-website/server/",
     "start": "ng serve",
     "start:ssr": "node dist/mathyn-codes-website/server/proxy-server.mjs",
-    "test": "ng test",
     "i18n:extract": "ng extract-i18n --output-path=src/i18n",
     "minikube:load": "dotenvx run -- @powershell -Command ./minikube/load-image-into-cache.ps1",
     "minikube:expose": "dotenvx run -- @powershell -Command ./minikube/expose-service.ps1",
@@ -21,6 +20,8 @@
     "docker:push": "dotenvx run -- @powershell -Command ./docker/push-image.ps1",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
+    "test": "ng test",
+    "test:ci": "ng test --watch=false",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -59,6 +60,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "playwright-ng-schematics": "^1.2.2",
+    "puppeteer": "^23.11.1",
     "typescript": "~5.6.2",
     "typescript-eslint": "8.18.0"
   }

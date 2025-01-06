@@ -14,16 +14,13 @@ describe('AppComponent', () => {
         expect(app).toBeTruthy();
     });
 
-    it('should have the \'mathyn-codes-website\' title', () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const app = fixture.componentInstance;
-        expect(app.title).toEqual('mathyn-codes-website');
-    });
-
-    it('should render title', () => {
+    it('should render the welcome message', () => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.nativeElement as HTMLElement;
-        expect(compiled.querySelector('h1')?.textContent).toContain('Hello, mathyn-codes-website');
+
+        const welcomeMessage = compiled.querySelector<HTMLSpanElement>('[data-testid="welcome-message"]');
+
+        expect(welcomeMessage?.textContent).toContain('Welcome to my website!');
     });
 });
