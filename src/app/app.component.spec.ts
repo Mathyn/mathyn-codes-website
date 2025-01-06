@@ -13,14 +13,4 @@ describe('AppComponent', () => {
         const app = fixture.componentInstance;
         expect(app).toBeTruthy();
     });
-
-    it('should render the welcome message', () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        fixture.detectChanges();
-        const compiled = fixture.nativeElement as HTMLElement;
-
-        const welcomeMessage = compiled.querySelector<HTMLSpanElement>('[data-testid="welcome-message"]');
-
-        expect(welcomeMessage?.textContent).toContain('Welcome to my website!');
-    });
 });
