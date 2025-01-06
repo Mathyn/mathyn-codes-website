@@ -118,6 +118,17 @@
               "src/**/*.html"
             ]
           }
+        },
+        "e2e": {
+          "builder": "playwright-ng-schematics:playwright",
+          "options": {
+            "devServerTarget": "mathyn-codes-website:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mathyn-codes-website:serve:production"
+            }
+          }
         }
       }
     }
