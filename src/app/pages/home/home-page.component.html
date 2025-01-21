@@ -1,11 +1,15 @@
 <div class="flex justify-center">
-    <div class="w-8/12 flex flex-col gap-4">
-        <app-short-intro />
+    <div style="width: 800px;" class="flex flex-col gap-4">
+        <app-short-intro-block />
 
-        <hr />
-
-        <app-skills />
-
-        <hr />
+        @if (isLoadingProjects()) {
+            <!--
+                Ideally we add a spinner here, however in practice right now no one is every going to see this!
+                (because we don't have an actual back-end).
+            -->
+            <span data-testid="loading-message" i18n>Just a moment, we are loading the projects!</span>
+        } @else {
+            <app-projects-block data-testid="projects" [projects]="projects()" />
+        }
     </div>
 </div>

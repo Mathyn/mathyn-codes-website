@@ -1,15 +1,28 @@
-import { Component } from '@angular/core';
-import { ShortIntroComponent } from '../../components/short-intro/short-intro.component';
-import { SkillsComponent } from '../../components/skills/skills.component';
+import { Component, OnInit } from '@angular/core';
+import { ShortIntroBlockComponent } from '../../components/short-intro-block/short-intro-block.component';
+import { ProjectsBlockComponent } from '../../components/projects-block/projects-block.component';
+import { select, Store } from '@ngxs/store';
+import { ProjectsState } from '../../state/projects/projects.state';
+import { LoadProjectsAction } from '../../state/projects/projects-state.actions';
 
 @Component({
     selector: 'app-home-page',
     templateUrl: './home-page.component.html',
     imports: [
-        ShortIntroComponent,
-        SkillsComponent
+        ShortIntroBlockComponent,
+        ProjectsBlockComponent
     ]
 })
-export default class HomePageComponent {
-    
+export default class HomePageComponent implements OnInit {
+    readonly isLoadingProjects = select(ProjectsState.isLoading);
+
+    readonly projects = select(ProjectsState.projects);
+
+    constructor(
+        private readonly store: Store
+    ) {}
+
+    ngOnInit(): void {
+        this.store.dispatch(new LoadProjectsAction());
+    }
 }
