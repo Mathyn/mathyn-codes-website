@@ -1,0 +1,8 @@
+<div class="flex flex-col gap-4">
+    <h2 class="text-xl font-bold" i18n>Projects I've been involved in</h2>
+
+    @for (project of projects(); track project.description; let i = $index) {
+        <app-project [attr.data-testid]="'project-' + i" [project] = project />
+    }
+</div>
+
